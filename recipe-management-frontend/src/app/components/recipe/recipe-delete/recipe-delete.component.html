@@ -1,0 +1,10 @@
+
+<div *ngIf="recipe" class="delete-recipe">
+  <h2>Confirm Deletion</h2>
+  <p>Are you sure you want to delete the recipe "<strong>{{ recipe.title }}</strong>"?</p>
+
+  <div class="buttons">
+    <button class="confirm-button" (click)="confirmDelete()">Yes, Delete</button>
+    <button class="cancel-button" (click)="router.navigate(['/recipes'])">Cancel</button>
+  </div>
+</div>

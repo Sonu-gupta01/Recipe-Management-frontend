@@ -1,0 +1,198 @@
+<div class="recipe-form">
+  <h2>Create a Recipe</h2>
+  <form (ngSubmit)="saveRecipe()" #recipeForm="ngForm">
+    <!-- Recipe Title -->
+    <div class="form-group">
+      <label for="title">Title: <span class="required">*</span></label>
+      <input
+        type="text"
+        id="title"
+        [(ngModel)]="recipe.title"
+        name="title"
+        required
+        pattern="^[a-zA-Z][a-zA-Z0-9_-]*([ ]?[a-zA-Z0-9_-]+)*[a-zA-Z]$"
+        #title="ngModel"
+        placeholder="Enter recipe title"
+      />
+      <div *ngIf="title.invalid && title.touched" class="error-message">
+        <small *ngIf="title.errors?.['required']">Title is required.</small>
+        <small *ngIf="title.errors?.['pattern']"
+          >Title must start and end with a letter and may contain spaces,
+          hyphens, or underscores in between.</small
+        >
+      </div>
+    </div>
+
+    <!-- Recipe Description -->
+    <div class="form-group">
+      <label for="description"
+        >Description: <span class="required">*</span></label
+      >
+      <textarea
+        id="description"
+        [(ngModel)]="recipe.description"
+        name="description"
+        required
+        pattern="^^[a-zA-Z][a-zA-Z0-9\s,]*[.;]$"
+        #description="ngModel"
+        placeholder="Enter description"
+      ></textarea>
+      <div
+        *ngIf="description.invalid && description.touched"
+        class="error-message"
+      >
+        <small *ngIf="description.errors?.['required']"
+          >Description is required.</small
+        >
+        <small *ngIf="description.errors?.['pattern']"
+          >Description must start with a letter and may only contain letters and
+          spaces and ends with full stop or semicolon.</small
+        >
+      </div>
+    </div>
+
+    <!-- Preparation Time -->
+    <div class="form-group">
+      <label for="prepTimeMinute"
+        >Preparation Time (in minutes): <span class="required">*</span></label
+      >
+      <input
+        type="number"
+        id="prepTimeMinute"
+        [(ngModel)]="recipe.prepTimeMinute"
+        name="prepTimeMinute"
+        required
+        min="1"
+        step="0.1"
+        placeholder="Enter preparation time"
+        #prepTime="ngModel"
+        [ngClass]="{ invalid: prepTime.invalid && prepTime.touched }"
+      />
+      <div *ngIf="prepTime.invalid && prepTime.touched" class="error-message">
+        <small *ngIf="prepTime.errors?.['required']"
+          >Preparation time is required.</small
+        >
+        <small *ngIf="prepTime.errors?.['min']"
+          >Preparation time must be greater than 1 minute.</small
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="imageUpload"
+        >Upload Recipe Image: <span class="required">*</span></label
+      >
+      <input
+        type="file"
+        id="imageUpload"
+        accept="image/*"
+        (change)="uploadImage($event)"
+        [disabled]="uploadingImage"
+      />
+
+      <p *ngIf="uploadingImage" class="uploading">Uploading image...</p>
+      <p *ngIf="uploadError" class="error">{{ uploadError }}</p>
+      <img
+        *ngIf="recipe.imagePath"
+        [src]="recipe.imagePath"
+        alt="Recipe Image"
+        class="uploaded-image"
+      />
+    </div>
+
+    <!-- Recipe Kind -->
+    <div class="form-group">
+      <label for="recipeKind"
+        >Recipe Categories: <span class="required">*</span></label
+      >
+      <select
+        id="recipeKind"
+        [(ngModel)]="recipe.recipeKind"
+        name="recipeKind"
+        required
+        #recipeKind="ngModel"
+        [ngClass]="{ invalid: recipeKind.invalid && recipeKind.touched }"
+      >
+        <option value="" disabled>Select Kind</option>
+        <option value="VEG">Vegetarian</option>
+        <option value="NON_VEG">Non-Vegetarian</option>
+        <option value="VEGAN">Vegan</option>
+      </select>
+      <div
+        *ngIf="recipeKind.invalid && recipeKind.touched"
+        class="error-message"
+      >
+        <small *ngIf="recipeKind.errors?.['required']"
+          >Recipe category is required.</small
+        >
+      </div>
+    </div>
+
+    <!-- Ingredients -->
+    <div class="form-group">
+      <label for="ingredients"
+        >Ingredients: <span class="required">*</span></label
+      >
+      <div class="dropdown">
+        <button
+          type="button"
+          class="dropdown-button"
+          (click)="toggleDropdown()"
+          [disabled]="!availableIngredients.length"
+        >
+          Select Ingredients <span [class.active]="dropdownOpen">▼</span>
+        </button>
+        <div class="dropdown-menu" *ngIf="dropdownOpen">
+          <ul>
+            <li *ngFor="let ingredient of availableIngredients">
+              <div class="ingredient-container">
+                <input
+                  type="checkbox"
+                  class="ingredient-checkbox"
+                  [checked]="isIngredientSelected(ingredient.id)"
+                  (change)="toggleIngredientSelection(ingredient.id)"
+                />
+                <label class="ingredient-name">
+                  {{ ingredient.name }}
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        *ngIf="
+          recipe.ingredients.length === 0 &&
+          (recipe.ingredients?.length === 0 || dropdownOpen) &&
+          recipeForm.touched
+        "
+        class="error-message"
+      >
+        <small>At least one ingredient is required.</small>
+      </div>
+    </div>
+
+    <!-- Selected Ingredients -->
+    <div class="selected-ingredients">
+      <h4>Selected Ingredients:</h4>
+      <ul>
+        <li *ngFor="let ingredient of recipe.ingredients">
+          <div class="ingredient-item">
+            <span>{{ ingredient.name }}</span>
+            <button
+              type="button"
+              class="remove-btn"
+              (click)="removeIngredient(ingredient.id)"
+            >
+              Remove
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <button type="submit" class="save-button" [disabled]="recipeForm.invalid">
+      Save Recipe
+    </button>
+  </form>
+</div>

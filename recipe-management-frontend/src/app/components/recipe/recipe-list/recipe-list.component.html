@@ -1,0 +1,17 @@
+<h1 class="heading">
+  Recipes
+  <button class="create-recipe-button" (click)="createRecipe()">Create Recipe</button>
+</h1>
+<div *ngIf="recipes.length === 0" class="no-recipes-message">
+  <h1>No recipes found in this category</h1>
+</div>
+<div class="recipe-list">
+  <div *ngFor="let recipe of recipes" class="recipe-card">
+    <img [src]="recipe.imagePath" alt="{{ recipe.title }}" class="recipe-card-image">
+    <div class="recipe-card-content">
+      <h3>{{ recipe.title }}</h3>
+      <p class="recipe-description">{{ recipe.description }}</p>
+      <button [routerLink]="['/recipes', recipe.id]">Detailed View</button>
+    </div>
+  </div>
+</div>

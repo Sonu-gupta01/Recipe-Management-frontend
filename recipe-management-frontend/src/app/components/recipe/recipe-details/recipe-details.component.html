@@ -1,0 +1,52 @@
+
+<div *ngIf="recipe" class="recipe-detail-container">
+  <!-- Recipe Details -->
+  <div class="recipe-header">
+    <img [src]="recipe.imagePath" alt="{{ recipe.title }}" class="recipe-image" />
+    <div class="recipe-info">
+      <h2>{{ recipe.title }}</h2>
+      <p class="recipe-kind">{{ recipe.recipeKind }}</p>
+      <p class="prep-time">Preparation Time: {{ recipe.prepTimeMinute }} min</p>
+    </div>
+    
+    <div class="average-rating">
+      <p>Overall Rating:</p>
+      <div class="stars">
+        <span *ngFor="let star of [1, 2, 3, 4, 5]" 
+              [class.filled]="star <= averageRating">
+          &#9733;
+        </span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="recipe-description">
+    <h4>Description</h4>
+    <p>{{ recipe.description }}</p>
+  </div>
+
+  <div class="recipe-ingredients">
+    <h4>Ingredients</h4>
+    <ul>
+      <li *ngFor="let ingredient of recipe.ingredients">
+        {{ ingredient.name }} - {{ ingredient.quantity }} {{ ingredient.unit }}
+      </li>
+    </ul>
+
+    <!-- Rating Section -->
+  <div class="rating-section">
+    <p>Rate this Recipe:</p>
+    <div class="stars">
+      <span *ngFor="let star of [1, 2, 3, 4, 5]" 
+            [class.filled]="star <= selectedRating"
+            (click)="selectedRating = star">&#9733;</span>
+    </div>
+  </div>
+  </div>
+
+  <div class="recipe-actions">
+    <button class="action-button rate-button" (click)="rateRecipe()">Rate</button>
+    <button class="action-button update-button" *ngIf="currentUserId && currentUserId === recipe.createdBy" (click)="updateRecipe()">Update Recipe</button>
+    <button class="action-button delete-button" *ngIf="currentUserId && currentUserId === recipe.createdBy" (click)="deleteRecipe()">Delete Recipe</button>
+  </div>
+</div>

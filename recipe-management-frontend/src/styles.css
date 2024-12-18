@@ -1,0 +1,39 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto; /* Ensure only one vertical scrollbar */
+}
+
+/* Main content area */
+.main-content {
+  padding-top: 70px; /* Adjust for header height */
+  padding-bottom: 60px; /* Adjust for footer height */
+  min-height: calc(100vh - 130px); /* Header + Footer height */
+  box-sizing: border-box;
+}
+
+/* Header styles */
+app-header {
+  width: 100%;
+  position: fixed; /* Fix header to the top */
+  top: 0;
+  z-index: 1000;
+}
+
+/* Footer styles */
+app-footer {
+  position: relative; /* Fix footer to the bottom */
+  bottom: 0;
+  width: 100%; /* Ensure it spans the width */
+  z-index: 1000;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+/* Prevent content from hiding behind the header/footer */
+body > .main-content {
+  padding-top: 70px;
+  padding-bottom: 60px;
+}

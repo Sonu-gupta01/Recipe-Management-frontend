@@ -1,0 +1,223 @@
+/* General form container styling */
+.menu-form {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+}
+
+.menu-form h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333333;
+    font-weight: 600;
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.required {
+    color: red;
+    margin-left: 5px;
+}
+
+/* Input and Select styling */
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Checkbox option styling */
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.checkbox-option input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.checkbox-option label {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Error message styling */
+.error-message {
+    color: #e63946;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Button styling */
+.submit-btn {
+    padding: 12px 25px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 210px;
+}
+
+.submit-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+.cancel-btn {
+    padding: 12px 25px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 80px;
+}
+
+.cancel-btn:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+}
+
+/* Modal styling */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    max-height: 400px;  
+    overflow-y: auto;  
+    width: 100%;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+}
+
+.modal-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.modal-content .checkbox-option {
+    margin-bottom: 10px;
+}
+
+.modal-content button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-content button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+/* Selected recipes */
+.selected-recipes {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.selected-recipes span {
+    background-color: #f0f0f0;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* Action buttons container */
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .menu-form {
+        padding: 15px;
+    }
+
+    .menu-form h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-input {
+        font-size: 0.9rem;
+    }
+
+    .submit-btn,
+    .cancel-btn {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+
+    .modal-content {
+        padding: 15px;
+    }
+
+    .modal-content h3 {
+        font-size: 1.2rem;
+    }
+}

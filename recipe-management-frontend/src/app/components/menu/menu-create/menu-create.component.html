@@ -1,0 +1,101 @@
+<form (ngSubmit)="createMenu()" #menuForm="ngForm">
+  <div class="form-group">
+    <label for="menuName">Menu Name <span class="required">*</span></label>
+    <input
+      type="text"
+      id="menuName"
+      [(ngModel)]="menuName"
+      name="menuName"
+      required
+      pattern="^[a-zA-Z0-9][a-zA-Z0-9_-]*[a-zA-Z0-9]$"
+      #menuNameModel="ngModel"
+      class="form-input"
+      placeholder="Enter menu name"
+    />
+    <div *ngIf="menuNameModel.invalid && menuNameModel.touched" class="error-message">
+      <small *ngIf="menuNameModel.errors?.['required']">Menu Name is required.</small>
+      <small *ngIf="menuNameModel.errors?.['pattern']">Menu Name must start and end with alphanumeric characters and can contain hyphens and underscores.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="mealType">Meal Type <span class="required">*</span></label>
+    <select
+      id="mealType"
+      [(ngModel)]="selectedMealType"
+      name="mealType"
+      required
+      #mealTypeModel="ngModel"
+      class="form-input"
+    >
+      <option *ngFor="let type of mealTypes" [value]="type">{{ type }}</option>
+    </select>
+    <div *ngIf="mealTypeModel.invalid && mealTypeModel.touched" class="error-message">
+      <small *ngIf="mealTypeModel.errors?.['required']">Please select a meal type.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="recipeTitle">Select Recipes <span class="required">*</span></label>
+    <button type="button" class="select-recipes-btn" (click)="openRecipeModal()">Select Recipes</button>
+    <div class="selected-recipes">
+      <span *ngFor="let recipe of selectedRecipes">{{ recipe.title }}</span>
+    </div>
+    <div *ngIf="selectedRecipes.length === 0 && formSubmitted" class="error-message">
+      <small>Please select at least one recipe.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="scheduleDate">Schedule Date <span class="required">*</span></label>
+    <input
+      type="date"
+      id="scheduleDate"
+      [(ngModel)]="scheduleDate"
+      name="scheduleDate"
+      required
+      [min]="minDate"
+      #scheduleDateModel="ngModel"
+      class="form-input"
+    />
+    <div *ngIf="scheduleDateModel.invalid && scheduleDateModel.touched" class="error-message">
+      <small *ngIf="scheduleDateModel.errors?.['required']">Schedule Date is required.</small>
+      <small *ngIf="scheduleDateModel.errors?.['min']">Date cannot be in the past.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="scheduleTime">Schedule Time <span class="required">*</span></label>
+    <input
+      type="time"
+      id="scheduleTime"
+      [(ngModel)]="scheduleTime"
+      name="scheduleTime"
+      required
+      [min]="minTime"
+      #scheduleTimeModel="ngModel"
+      class="form-input"
+    />
+    <div *ngIf="scheduleTimeModel.invalid && scheduleTimeModel.touched" class="error-message">
+      <small *ngIf="scheduleTimeModel.errors?.['required']">Schedule Time is required.</small>
+      <small *ngIf="scheduleTimeModel.errors?.['min']">Time cannot be in the past.</small>
+    </div>
+  </div>
+
+  <button type="submit" class="submit-btn">Create Menu</button>
+</form>
+
+<!-- Recipe Selection Modal -->
+<div class="modal" [ngClass]="{ 'modal-open': isModalOpen }">
+  <div class="modal-content">
+    <h3>Select Recipes</h3>
+    <div *ngFor="let recipe of recipes" class="checkbox-option">
+      <input type="checkbox" [(ngModel)]="recipe.selected" />
+      <label>{{ recipe.title }}</label>
+    </div>
+    <div class="modal-actions">
+      <button (click)="closeRecipeModal()">Cancel</button>
+      <button (click)="saveSelectedRecipes()">Save</button>
+    </div>
+  </div>
+</div>

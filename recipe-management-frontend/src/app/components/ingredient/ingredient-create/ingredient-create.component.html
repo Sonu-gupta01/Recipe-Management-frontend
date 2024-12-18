@@ -1,0 +1,63 @@
+<form (ngSubmit)="createIngredient()" class="ingredient-form" #ingredientForm="ngForm">
+  <h2 class="form-heading">Create Ingredient</h2>
+
+  <div class="form-group">
+    <label for="name">Ingredient Name <span class="required">*</span></label>
+    <input 
+      type="text" 
+      id="name" 
+      [(ngModel)]="ingredient.name" 
+      name="name" 
+      placeholder="Enter ingredient name" 
+      required
+      pattern="^[a-zA-Z][a-zA-Z_-]*([ ]?[a-zA-Z_-]+)*$"
+      #nameModel="ngModel"
+      class="form-input"
+    />
+    <div *ngIf="nameModel.invalid && nameModel.touched" class="error-message">
+      <small *ngIf="nameModel.errors?.['required']">Ingredient Name is required.</small>
+      <small *ngIf="nameModel.errors?.['pattern']">Ingredient Name must start and end with alphanumeric characters and can contain hyphens and underscores.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="quantity">Quantity <span class="required">*</span></label>
+    <input 
+      type="number" 
+      id="quantity" 
+      [(ngModel)]="ingredient.quantity" 
+      name="quantity" 
+      placeholder="Enter quantity" 
+      required
+      min="1"  
+      step="any"  
+      #quantityModel="ngModel"
+      class="form-input"
+    />
+    <div *ngIf="quantityModel.invalid && quantityModel.touched" class="error-message">
+      <small *ngIf="quantityModel.errors?.['required']">Quantity is required.</small>
+      <small *ngIf="quantityModel.errors?.['min']">Quantity must be greater than 0.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="unit">Unit <span class="required">*</span></label>
+    <input 
+      type="text" 
+      id="unit" 
+      [(ngModel)]="ingredient.unit" 
+      name="unit" 
+      placeholder="Enter unit (e.g., grams, cups)" 
+      required
+      pattern="^[a-zA-Z]+$"  
+      #unitModel="ngModel"
+      class="form-input"
+    />
+    <div *ngIf="unitModel.invalid && unitModel.touched" class="error-message">
+      <small *ngIf="unitModel.errors?.['required']">Unit is required.</small>
+      <small *ngIf="unitModel.errors?.['pattern']">Unit must contain only letters (no special characters, spaces, or numbers).</small>
+    </div>
+  </div>
+
+  <button type="submit" class="btn-submit" [disabled]="ingredientForm.invalid">Create Ingredient</button>
+</form>

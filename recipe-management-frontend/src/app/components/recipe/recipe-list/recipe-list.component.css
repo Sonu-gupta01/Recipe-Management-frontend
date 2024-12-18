@@ -1,0 +1,113 @@
+
+/* Heading Styles */
+.heading {
+  justify-content: center;
+  background-color: #ddd;
+  text-align: center;
+  margin-top: 1px;
+  font-size: 2rem;
+  padding: 5px;
+  position: relative;
+}
+
+/* Create Recipe Button at the top-right corner */
+.create-recipe-button {
+  position: absolute;
+  top: 6px; /* Adjust distance from the top */
+  right: 20px; /* Adjust distance from the right */
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+/* Recipe List Layout */
+.recipe-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Exactly 4 columns per row */
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+}
+
+/* Recipe Card Styles */
+.recipe-card {
+  background-color: #f9fafc;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 250px; /* Smaller card size */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Styling */
+.recipe-card img {
+  width: 100%;
+  height: 150px; /* Fixed height for uniformity */
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Content Area */
+.recipe-card-content {
+  padding: 10px;
+}
+
+.recipe-card h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.recipe-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Ellipsis for long descriptions */
+}
+
+/* Button Styling */
+.recipe-card button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.recipe-card button:hover {
+  background-color: #0056b3;
+}
+.no-recipes-message {
+  text-align: center;
+  color: #ff6347; /* Red color */
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .recipe-list {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row for smaller screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .recipe-list {
+    grid-template-columns: 1fr; /* 1 card per row for very small screens */
+  }
+}

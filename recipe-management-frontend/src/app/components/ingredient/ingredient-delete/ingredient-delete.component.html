@@ -1,0 +1,19 @@
+<div class="delete-confirmation">
+    <h2>Delete Ingredient</h2>
+    <div class="input-group">
+      <label for="ingredientId">Ingredient ID:</label>
+      <input
+        type="number"
+        id="ingredientId"
+        [(ngModel)]="ingredientId"
+        name="ingredientId"
+        placeholder="Enter Ingredient ID"
+      />
+    </div>
+  
+    <div class="buttons">
+      <button class="confirm-button" (click)="deleteIngredient()">Delete</button>
+      <button class="cancel-button" (click)="cancelDeletion()">Cancel</button>
+    </div>
+  </div>
+  
