@@ -1,0 +1,30 @@
+<h1 class="heading">
+  Your Personalized Menus
+  <!-- Button to create a new recipe -->
+  <button class="create-menu-button" (click)="createMenu()">Create Menu</button>
+</h1>
+  <div class="menu-container" >
+    <!-- <button class="create-menu-button" (click)="createMenu()">Create Menu</button> -->
+    <div *ngFor="let menu of menus" class="menu-card">
+      <div class="menu-header">
+        <h3 class="menu-name">Menu Name: {{ menu.menuName }}</h3>
+        <p class="meal-type">Meal Type: <span>{{ menu.mealType }}</span></p>
+      </div>
+      <div class="menu-details">
+        <p class="recipe-title">Recipe: <strong>{{ menu.recipeTitles.join(', ') }}</strong></p>
+        <p class="schedule">Scheduled: <span>{{ menu.scheduledAt | date: 'dd/MM/yyyy, hh:mm:ss a' }}</span></p>
+      </div>
+      <div class="menu-actions">
+        <button class="update-btn" (click)="updateMenu(menu)">Update</button>
+        <button class="delete-btn" (click)="deleteMenu(menu.id)">Delete</button>
+      </div>
+    </div>
+  
+    <!-- Pagination Controls -->
+    <div class="pagination">
+      <button [disabled]="currentPage === 0" (click)="previousPage()">Previous</button>
+      <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+      <button [disabled]="(currentPage + 1) * pageSize >= totalMenus" (click)="nextPage()">Next</button>
+    </div>
+  </div>
+  

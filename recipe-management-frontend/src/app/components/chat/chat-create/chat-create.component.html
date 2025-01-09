@@ -1,0 +1,44 @@
+<div class="chat-container">
+  <div class="user-list">
+    <h3>Users</h3>
+    <ul>
+      <li
+        *ngFor="let user of users"
+        [class.selected]="user.id === selectedUser?.id"
+        (click)="onUserSelect(user.id)"
+        class="user-item"
+      >
+        {{ user.username }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="chat-window" *ngIf="selectedUser">
+    <div class="chat-header">
+      <h4>{{ selectedUser.username }}</h4>
+    </div>
+
+    <div class="messages">
+      <div
+        *ngFor="let msg of messages"
+        [class.sender]="msg.senderId === currentUserId"
+        [class.receiver]="msg.senderId !== currentUserId"
+        class="message-wrapper"
+      >
+        <div class="message">
+          <p>{{ msg.messageText }}</p>
+          <span class="timestamp">{{ msg.sentOn | date: 'shortTime' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="message-input">
+      <input [(ngModel)]="message" placeholder="Type a message..." />
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <div class="placeholder" *ngIf="!selectedUser">
+    <h4>Select a user to start chatting</h4>
+  </div>
+</div>

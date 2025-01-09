@@ -1,0 +1,17 @@
+
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+<div class="chat-container">
+  <div class="user-list">
+    <h3>Users</h3>
+    <ul>
+      <li *ngFor="let user of users" (click)="onUserSelect(user.id)" class="user-item">
+        {{ user.username }}
+      </li>
+    </ul>
+  </div>
+  <div class="chat-box">
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="rating-form">
+  <h3>Rate Recipe</h3>
+  <form (ngSubmit)="submitRating()" #ratingForm="ngForm" novalidate>
+    <!-- Rating Field -->
+    <div class="form-group">
+      <label for="rating">Rating (1-5)</label>
+      <input
+        id="rating"
+        type="number"
+        class="form-control"
+        [(ngModel)]="rating"
+        name="rating"
+        required
+        min="1"
+        max="5"
+      />
+      <small
+        *ngIf="
+          ratingForm.controls['rating']?.invalid &&
+          ratingForm.controls['rating']?.touched
+        "
+      >
+        Rating must be between 1 and 5.
+      </small>
+    </div>
+
+    <!-- Button Container -->
+    <div class="button-container">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="ratingForm.invalid"
+      >
+        Submit Rating
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="goBack()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,95 @@
+/* Updated Header Styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #162f3b;
+    color: #fff;
+    padding: 10px 20px;
+    height: 60px;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding is included in the width calculation */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0; /* Ensures the header stays aligned to the left */
+    z-index: 1000;
+    /* Allows horizontal scrolling if content exceeds the viewport width */
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: 500;
+  }
+  
+  .navbar a:hover {
+    background-color: #444;
+    border-radius: 5px;
+  }
+  
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown .dropbtn {
+    color: #fff;
+    background: none;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #222;
+    min-width: 160px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+  }
+  
+  .dropdown-content a {
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .container {
+    padding-top: 70px; /* Adjust to avoid header overlap */
+  }
+  
+  .search-bar {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #162f3b;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  

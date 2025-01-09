@@ -1,0 +1,118 @@
+/* General Styling for the Form */
+.rating-form {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header Styling */
+  .rating-form h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Group Styling */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Label Styling */
+  .form-group label {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  /* Input Field Styling */
+  .form-group input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+  
+  /* Error Message Styling */
+  .form-group small {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.875rem;
+    color: red;
+  }
+  
+  /* Button Container (Flexbox to align buttons horizontally) */
+  .button-container {
+    display: flex;
+    justify-content: space-between; /* Align buttons side by side */
+    margin-top: 20px;
+  }
+  
+  /* Submit Button Styling */
+  button[type="submit"] {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 1; /* Ensures the button takes equal space */
+    margin-right: 10px; /* Add margin between the buttons */
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Cancel Button Styling */
+  button[type="button"] {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 1; /* Ensures the button takes equal space */
+  }
+  
+  button[type="button"]:hover {
+    background-color: #f02525;
+  }
+  
+  /* Disabled Button Styling */
+  button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Add spacing around the form */
+  .rating-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Additional Styling for Responsiveness */
+  @media (max-width: 600px) {
+    .rating-form {
+      padding: 15px;
+    }
+  
+    button[type="submit"],
+    button[type="button"] {
+      width: 100%; /* Make buttons full width on small screens */
+      margin-left: 0;
+    }
+  }
+  

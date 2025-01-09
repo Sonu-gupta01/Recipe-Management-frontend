@@ -1,0 +1,6 @@
+<div class="menu-delete-container">
+  <h2 class="form-title">Delete Menu</h2>
+  <p class="form-description">Please enter the Menu ID you wish to delete. Be cautious, this action is irreversible.</p>
+  <input type="text" [(ngModel)]="menuId" placeholder="Enter Menu ID" class="form-input" />
+  <button (click)="deleteMenu()" class="delete-btn">Delete</button>
+</div>

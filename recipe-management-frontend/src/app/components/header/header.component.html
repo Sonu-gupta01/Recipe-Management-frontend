@@ -1,0 +1,39 @@
+<header class="header">
+  <a *ngIf="isLoggedIn" href="/home" class="logo"><img src="assets/logo.jpg" alt="RecipeMaster Logo" class="logo-img" /></a>
+
+  <nav class="navbar">
+    <a *ngIf="isLoggedIn" routerLink="/home" routerLinkActive="active">Home</a>
+
+    <a *ngIf="isLoggedIn" routerLink="/recipes" routerLinkActive="active">Recipes</a>
+
+    <div class="dropdown" *ngIf="isLoggedIn">
+      <button class="dropbtn">Categories</button>
+      <div class="dropdown-content">
+        <a (click)="onCategorySelect('VEG')">VEG</a>
+        <a (click)="onCategorySelect('NON_VEG')">NON-VEG</a>
+        <a (click)="onCategorySelect('VEGAN')">VEGAN</a>
+      </div>
+    </div>
+    
+<a *ngIf="isLoggedIn" routerLink="/menus" routerLinkActive="active">Menu</a>
+
+<a *ngIf="isLoggedIn" routerLink="/ingredient-create" routerLinkActive="active">Create Ingredient</a>
+
+  <a *ngIf="isLoggedIn" routerLink="/chat" routerLinkActive="active">Chat</a>
+
+    <ng-container *ngIf="isLoggedIn; else loggedOut">
+      <div class="dropdown">
+        <button class="dropbtn">{{ email }}</button>
+        <div class="dropdown-content">
+
+          <a (click)="logout()">Logout</a>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #loggedOut>
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+      <a routerLink="/register" routerLinkActive="active">Sign Up</a>
+    </ng-template>
+  </nav>
+</header>

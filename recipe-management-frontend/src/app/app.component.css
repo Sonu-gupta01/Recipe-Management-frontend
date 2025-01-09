@@ -1,0 +1,12 @@
+/* styles.css or app.component.css */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.main-content {
+  flex-grow: 1;
+}

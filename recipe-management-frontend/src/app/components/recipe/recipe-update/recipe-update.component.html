@@ -1,0 +1,106 @@
+<div class="recipe-update-container">
+  <h2>Update Recipe</h2>
+  <form (ngSubmit)="updateRecipe(recipeForm)" #recipeForm="ngForm" class="recipe-form">
+    <div class="form-group">
+      <label for="title">Title: <span class="required">*</span></label>
+      <input
+        type="text"
+        id="title"
+        [(ngModel)]="recipe.title"
+        name="title"
+        required
+        pattern="^[a-zA-Z][a-zA-Z0-9\s_-]*[a-zA-Z]$"
+        #title="ngModel"
+        placeholder="Enter recipe title"
+      />
+      <div *ngIf="title.invalid && title.touched" class="error-message">
+        <small *ngIf="title.errors?.['required']">Title is required.</small>
+        <small *ngIf="title.errors?.['pattern']">Title must start and end with a letter and may contain spaces, hyphens, or underscores in between.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description: <span class="required">*</span></label>
+      <textarea
+        id="description"
+        [(ngModel)]="recipe.description"
+        name="description"
+        required
+        pattern="^^[a-zA-Z][a-zA-Z0-9\s,]*[.;]$"
+        #description="ngModel"
+        placeholder="Enter description"
+      ></textarea>
+      <div *ngIf="description.invalid || description.touched" class="error-message">
+        <small *ngIf="description.errors?.['required']">Description is required.</small>
+        <small *ngIf="description.errors?.['pattern']">Description must start with a letter and may only contain letters and spaces.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="prepTimeMinute">Preparation Time (in minutes): <span class="required">*</span></label>
+      <input
+        type="number"
+        id="prepTimeMinute"
+        [(ngModel)]="recipe.prepTimeMinute"
+        name="prepTimeMinute"
+        required
+        min="1"
+        step="0.1"
+        placeholder="Enter preparation time"
+        #prepTime="ngModel"
+        [ngClass]="{ 'invalid': prepTime.invalid && prepTime.touched }"
+      />
+      <div *ngIf="prepTime.invalid && prepTime.touched" class="error-message">
+        <small *ngIf="prepTime.errors?.['required']">Preparation time is required.</small>
+        <small *ngIf="prepTime.errors?.['min']">Preparation time must be greater than 1 minute.</small>
+      </div>
+    </div>
+
+  
+    <div class="form-group">
+      <label for="imageUpload">Upload Recipe Image:</label>
+      <input
+        type="file"
+        id="imageUpload"
+        accept="image/*"
+        (change)="uploadImage($event)"
+      />
+      <p *ngIf="uploadingImage" class="uploading">Uploading image...</p>
+      <p *ngIf="uploadError" class="error">{{ uploadError }}</p>
+      <div *ngIf="recipe.imagePath">
+        <label>Uploaded Image URL:</label>
+        <a [href]="recipe.imagePath" target="_blank">{{ recipe.imagePath }}</a>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="recipeKind">Recipe Categories: <span class="required">*</span></label>
+      <select
+        id="recipeKind"
+        [(ngModel)]="recipe.recipeKind"
+        name="recipeKind"
+        required
+        #recipeKind="ngModel"
+        [ngClass]="{ 'invalid': recipeKind.invalid && recipeKind.touched }"
+      >
+        <option value="" disabled>Select Kind</option>
+        <option value="VEG">Vegetarian</option>
+        <option value="NON_VEG">Non-Vegetarian</option>
+        <option value="VEGAN">Vegan</option>
+      </select>
+      <div *ngIf="recipeKind.invalid && recipeKind.touched" class="error-message">
+        <small *ngIf="recipeKind.errors?.['required']">Recipe category is required.</small>
+      </div>
+    </div>
+
+    <div class="form-actions"><button type="submit" class="update-btn">Update Recipe</button>
+      <button
+        type="button"
+        class="cancel-btn"
+        (click)="cancel()"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

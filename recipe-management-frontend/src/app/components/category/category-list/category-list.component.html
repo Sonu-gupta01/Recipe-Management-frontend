@@ -1,0 +1,12 @@
+<select (change)="onCategoryChange($event)">
+    <option value="">-- Select Category --</option>
+    <option value="VEG">VEG</option>
+    <option value="NON_VEG">NON_VEG</option>
+    <option value="VEGAN">VEGAN</option>
+  </select>
+  
+  <div *ngFor="let recipe of recipes">
+    <h3>{{ recipe.title }}</h3>
+    <p>{{ recipe.description }}</p>
+  </div>
+  
